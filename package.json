@@ -1,7 +1,7 @@
 {
-  "name": "generator-initios-frontend",
+  "name": "generator-initios-yeoman",
   "version": "0.0.0",
-  "description": "Initios-Frontend",
+  "description": "Initios-Yeoman",
   "keywords": [
     "yeoman-generator"
   ],
