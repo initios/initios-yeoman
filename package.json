@@ -1,0 +1,11 @@
+{
+  "name": "generator-initios-frontend",
+  "version": "0.0.0",
+  "description": "Initios-Frontend",
+  "keywords": [
+    "yeoman-generator"
+  ],
+  "dependencies": {
+    "yeoman-generator": "^0.17.7"
+  }
+}
