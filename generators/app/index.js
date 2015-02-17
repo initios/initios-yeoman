@@ -30,5 +30,9 @@ module.exports = generators.Base.extend({
 
   	writing: function() {
   		this.template('bower.json', 'bower.json');
+  	},
+
+  	install: function() {
+    	this.spawnCommand('bower', ['install']);
   	}
 });
