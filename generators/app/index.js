@@ -18,8 +18,7 @@ module.exports = generators.Base.extend({
 			message: "Select bower packages to install",
 			store: true,
 			choices: [
-				new inquirer.Separator("Css Framework:"),
-				{name: "bootstrap"}, {name: "foundation"},
+				 "bootstrap", "foundation", "jquery", "angular"
 			]
 	    }, function(answers) {
     		this.store["bower-dependencies"] = answers.name;
