@@ -2,19 +2,32 @@ var generators = require('yeoman-generator');
 var inquirer = require("inquirer");
 
 module.exports = generators.Base.extend({
-	bowerPackages: function() {
 
-		inquirer.prompt([{
-			type: "checkbox",
+	initializing: function() {
+		this.store = {
+			"css-frameworks": null
+		}
+	},
+
+	prompting: function() {
+	    var done = this.async();
+
+	    this.prompt({
+			type: 'checkbox',
+			name: 'name',
 			message: "Select bower packages to install",
-			name: "Bower packages",
+			store: true,
 			choices: [
 				new inquirer.Separator("Css Framework:"),
-				{name: "Bootstrap"}, {name: "Foundation"},
+				{name: "bootstrap"}, {name: "foundation"},
 			]
-		}], function( answers ) {
-			console.log( JSON.stringify(answers, null, " ") );
-		});
+	    }, function(answers) {
+    	  this.store["css-frameworks"] = answers["name"]
+	      done();
+	    }.bind(this));
+  	},
 
-	}
+  	writing: function() {
+  		this.template('bower.json', 'bower.json');
+  	}
 });
