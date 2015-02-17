@@ -11,24 +11,6 @@ module.exports = generators.Base.extend({
 		}
 	},
 
-	prompting: function() {
-	    var done = this.async();
-
-	    this.prompt({
-			type: 'checkbox',
-			name: 'name',
-			message: "Select bower packages to install",
-			store: true,
-			choices: [
-				 "bootstrap", "foundation", "jquery", "angular"
-			]
-	    }, function(answers) {
-    		this.store["bower-dependencies"] = answers.name;
-    		console.log(this.store);
-	      	done();
-	    }.bind(this));
-  	},
-
   	writing: function() {
   		this.template('_bower.json', 'bower.json');
 		this.template('_package.json', 'package.json');

@@ -2,9 +2,9 @@
   "name": "<%= _.slugify(appname) %>",
   "private": true,
   "dependencies": {
- 	<% for (index in store["bower-dependencies"]) { %>
- 		<% length = store["bower-dependencies"].length %>
- 		"<%= store["bower-dependencies"][index] %>": "latest" <% if (length > 1 && index < length-1) { %>,<% } %>
- 	<% } %>
+    "jquery": "latest",
+    "bootstrap-sass": "latest",
+    "angular": "latest",
+    "modernizr": "latest"
   }
 }
