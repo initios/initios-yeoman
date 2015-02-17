@@ -34,8 +34,10 @@ module.exports = generators.Base.extend({
   	},
 
   	install: function() {
-		this.spawnCommand('npm', ['install']);
-		this.spawnCommand('node_modules/gulp/bin/bower', ['install']);
+		this.installDependencies();
+  	},
+
+  	end: function() {
 		this.spawnCommand('node_modules/gulp/bin/gulp.js');
   	}
 });
