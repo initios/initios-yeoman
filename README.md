@@ -1,4 +1,4 @@
-# Initios Frontend
+# Initios Yeoman
 
 ### Developing
 Go to the generator folder and exec the following command:
@@ -7,7 +7,7 @@ Go to the generator folder and exec the following command:
 npm link
 ```
 
-Yeoman will now recognize the package, just run yo initios-frontend
+Yeoman will now recognize the package, just run yo initios-yeoman
 from another folder and you can test this generator on local.
 
 Workaround: If "npm link" is not working for you try with
