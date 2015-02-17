@@ -1,5 +1,5 @@
 {
-  "name": "initios-frontend",
+  "name": "<%= _.slugify(appname) %>",
   "private": true,
   "dependencies": {
  	<% for (index in store["bower-dependencies"]) { %>

@@ -28,12 +28,14 @@ module.exports = generators.Base.extend({
   	},
 
   	writing: function() {
-  		this.template('bower.json', 'bower.json');
-		this.template('package.json', 'package.json');
+  		this.template('_bower.json', 'bower.json');
+		this.template('_package.json', 'package.json');
+		this.template('_gulpfile.js', 'gulpfile.js');
   	},
 
   	install: function() {
-    	this.spawnCommand('bower', ['install']);
 		this.spawnCommand('npm', ['install']);
+		this.spawnCommand('node_modules/gulp/bin/bower', ['install']);
+		this.spawnCommand('node_modules/gulp/bin/gulp.js');
   	}
 });

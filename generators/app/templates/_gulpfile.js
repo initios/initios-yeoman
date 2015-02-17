@@ -25,5 +25,5 @@ gulp.task('libJs', function() {
 
 gulp.task('production', ['libJs']);
 
-gulp.task('default', []);
+gulp.task('default', ['libJs']);
  
