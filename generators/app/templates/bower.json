@@ -1,4 +1,9 @@
 {
   "name": "initios-frontend",
-  "private": true
+  "private": true,
+  "dependencies": {
+ 	<% if (store["css-frameworks"]["bootstrap"]==true) { %>
+ 		"bootstrap": "latest"
+ 	<% } %>
+  }
 }

@@ -5,7 +5,7 @@ module.exports = generators.Base.extend({
 
 	initializing: function() {
 		this.store = {
-			"css-frameworks": null
+			"css-frameworks": [{"bootstrap": null, "foundation": null}]
 		}
 	},
 
@@ -22,7 +22,20 @@ module.exports = generators.Base.extend({
 				{name: "bootstrap"}, {name: "foundation"},
 			]
 	    }, function(answers) {
-    	  this.store["css-frameworks"] = answers["name"]
+
+	    	for (var i=0; i<answers.name.length; i++) {
+	    		var answer = answers.name[i];
+
+	    		if (answer == "bootstrap") {
+	    			this.store["css-frameworks"]["bootstrap"] = true;
+	    		}
+
+	    		if (answer == "foundation") {
+	    			this.store["css-frameworks"]["foundation"] = true;
+	    		}
+
+	    	}
+
 	      done();
 	    }.bind(this));
   	},
