@@ -11,5 +11,6 @@
   "repository": {
   	"type": "git",
   	"url": "https://github.com/initios/initios-yeoman"
-  }
+  },
+  "license": "BSD-3-Clause"
 }
