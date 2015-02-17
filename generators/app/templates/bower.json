@@ -2,8 +2,9 @@
   "name": "initios-frontend",
   "private": true,
   "dependencies": {
- 	<% if (store["css-frameworks"]["bootstrap"]==true) { %>
- 		"bootstrap": "latest"
+ 	<% for (index in store["bower-dependencies"]) { %>
+ 		<% length = store["bower-dependencies"].length %>
+ 		"<%= store["bower-dependencies"][index] %>": "latest" <% if (length > 1 && index < length-1) { %>,<% } %>
  	<% } %>
   }
 }
