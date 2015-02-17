@@ -1,5 +1,7 @@
 var generators = require('yeoman-generator');
 var inquirer = require("inquirer");
+var chalk = require('chalk');
+var yosay = require('yosay');
 
 module.exports = generators.Base.extend({
 
@@ -38,6 +40,7 @@ module.exports = generators.Base.extend({
   	},
 
   	end: function() {
+  		this.log(yosay('Almost done! ' + chalk.red('running default gulp task')));
 		this.spawnCommand('node_modules/gulp/bin/gulp.js');
   	}
 });
