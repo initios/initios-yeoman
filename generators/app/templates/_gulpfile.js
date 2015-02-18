@@ -14,10 +14,10 @@ var config = {
 
 gulp.task('libJs', function() {
 	gulp.src([
-		'./bower_components/jquery/dist/jquery.js',
-		'./bower_components/modernizr/modernizr.js',
-		'./bower_components/bootstrap-sass/assets/javascripts/bootstrap.js',
-		'./bower_components/angular/angular.js'
+		'./app/assets/vendor/bower_components/jquery/dist/jquery.js',
+		'./app/assets/vendor/bower_components/modernizr/modernizr.js',
+		'./app/assets/vendor/bower_components/bootstrap-sass/assets/javascripts/bootstrap.js',
+		'./app/assets/vendor/bower_components/angular/angular.js'
 	])
     .pipe(sourcemaps.init())
   	.pipe(uglify())
@@ -28,7 +28,7 @@ gulp.task('libJs', function() {
 
 gulp.task('libSass', function() {
 	gulp.src([
-		'./app/assets/sass/lib.sass'
+		'./app/assets/styles/lib.sass'
 	])
 	.pipe(sourcemaps.init())
 	.pipe(sass())
@@ -37,10 +37,9 @@ gulp.task('libSass', function() {
 });
 
 gulp.task('sass', function() {
-	// Compile all sass files recursively except lib.sass (which has it's own task libSass)
 	gulp.src([
-		'./app/assets/sass/**/*.sass',
-		'!./app/assets/sass/lib.sass'
+		'./app/assets/styles/**/*.sass',
+		'!./app/assets/styles/lib.sass'
 	])
 	.pipe(sourcemaps.init())
 	.pipe(sass())
@@ -55,9 +54,6 @@ gulp.task('coffee', function() {
 	.on('error', gutil.log))
     .pipe(gulp.dest(config.destinationJs))
 });
-
-// TO DO
-//gulp.task('production', ['libJs']);
 
 gulp.task('default', ['libJs', 'libSass', 'sass', 'coffee']);
  
