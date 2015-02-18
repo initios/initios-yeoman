@@ -1,0 +1,19 @@
+doctype html
+html(lang='en', ng-app='<%= _.slugify(appname) %>')
+  head
+    meta(charset='utf-8')
+    meta(http-equiv="X-UA-Compatible", content="IE=edge,chrome=1")
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    meta(name='description', content='')
+    meta(name='author', content='')
+    
+    title(ng-bind-template='<%= _.slugify(appname) %>')
+
+    link(rel='stylesheet', href='/css/lib.css')
+    link(rel='stylesheet', href='/css/app.css')
+    
+  body(ng-app="<%= _.slugify(appname) %>")
+    div(class="container" ng-view="")
+    
+    script(src='/js/lib.js')
+    script(src='/js/app.js')
