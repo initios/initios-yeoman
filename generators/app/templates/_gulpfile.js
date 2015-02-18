@@ -7,6 +7,7 @@ var uglify = require('gulp-uglify');
 var sass = require('gulp-sass');
 var gutil = require('gulp-util');
 var jade = require('gulp-jade');
+var watch = require('gulp-watch');
 
 var config = {
 	"destination": "./build/",
@@ -79,6 +80,24 @@ gulp.task('templates', function() {
 });
 
 
+gulp.task('watch', function() {
+	gulp.watch([
+		'./app/assets/styles/**/*.sass',
+		'!./app/assets/styles/lib.sass'
+	], ['sass']);
+	gulp.watch([
+		'./app/assets/styles/lib.sass'
+	], ['libSass']);
+	gulp.watch([
+		'./app/assets/scripts/**/*.coffee'
+	], ['coffee']);
+	gulp.watch([
+		'./app/index.jade',
+		'./app/templates/**/*.jade'
+	], ['templates']);
+});
+
+
 gulp.task('server', function() {
 	gulp.src('./build/')
 		.pipe(webserver({
@@ -89,6 +108,8 @@ gulp.task('server', function() {
 		}));
 });
 
+
+gulp.task('launch', ['server', 'watch']);
 
 gulp.task('default', ['libJs', 'libSass', 'sass', 'coffee', 'templates']);
  
