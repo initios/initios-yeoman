@@ -15,5 +15,6 @@
   },
   "devDependencies": { 
     "gulp-sourcemaps": "^1.3.0"
-  }
+  },
+  "private": true
 }
