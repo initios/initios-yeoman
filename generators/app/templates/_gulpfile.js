@@ -36,8 +36,10 @@ gulp.task('libSass', function() {
 });
 
 gulp.task('sass', function() {
+	// Compile all sass files recursively except lib.sass (which has it's own task libSass)
 	gulp.src([
-		'./app/assets/sass/**/*.sass'
+		'./app/assets/sass/**/*.sass',
+		'!./app/assets/sass/lib.sass'
 	])
 	.pipe(sourcemaps.init())
 	.pipe(sass())
