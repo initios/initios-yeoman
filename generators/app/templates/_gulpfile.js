@@ -4,6 +4,7 @@ var sourcemaps = require('gulp-sourcemaps');
 var coffee = require('gulp-coffee');
 var uglify = require('gulp-uglify');
 var sass = require('gulp-sass');
+var gutil = require('gulp-util');
 
 var config = {
 	"destination": "./build/",
@@ -47,8 +48,26 @@ gulp.task('sass', function() {
   	.pipe(gulp.dest(config.destinationCss));
 });
 
+gulp.task('coffee', function() {
+	gulp.src([
+		'./app/assets/coffee/**/*.coffee'
+	])
+    .pipe(sourcemaps.init())
+	.pipe(concat('lib.js'))
+    .pipe(sourcemaps.write())
+	.pipe(gulp.dest(config.destinationJs));
+});
 
-gulp.task('production', ['libJs']);
+gulp.task('coffee', function() {
+  gulp.src('./app/assets/coffee/**/*.coffee')
+    .pipe(coffee({bare: true})
+	.pipe(sourcemaps.write())
+	.on('error', gutil.log))
+    .pipe(gulp.dest(config.destinationJs))
+});
 
-gulp.task('default', ['libJs', 'libSass', 'sass']);
+// TO DO
+//gulp.task('production', ['libJs']);
+
+gulp.task('default', ['libJs', 'libSass', 'sass', 'coffee']);
  
