@@ -23,7 +23,7 @@ module.exports = generators.Base.extend({
   	},
 
   	end: function() {
-  		this.log(yosay('Almost done! ' + chalk.red('running default gulp task')));
+  		this.log(yosay('Almost done! ' + chalk.green('running default gulp task')));
 		this.spawnCommand('node_modules/gulp/bin/gulp.js');
   	}
 });
