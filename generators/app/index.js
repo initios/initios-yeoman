@@ -12,6 +12,9 @@ module.exports = generators.Base.extend({
 	},
 
   	writing: function() {
+  		// App directory structure
+  		this.directory('app', 'app');
+
   		this.template('_bower.json', 'bower.json');
 		this.template('_package.json', 'package.json');
 		this.template('_gulpfile.js', 'gulpfile.js');
