@@ -8,12 +8,14 @@ var sass = require('gulp-sass');
 var gutil = require('gulp-util');
 var jade = require('gulp-jade');
 var watch = require('gulp-watch');
+var gulpif = require('gulp-if');
+var argv = require('yargs').argv;
 
 var config = {
 	"destination": "./build/",
 	"destinationJs": "./build/js/",
 	"destinationCss": "./build/css/",
-	"destionationTemplates": "./build/templates/"
+	"destinationTemplates": "./build/templates/"
 };
 
 gulp.task('libJs', function() {
@@ -23,10 +25,8 @@ gulp.task('libJs', function() {
 		'./app/assets/vendor/bower_components/bootstrap-sass/assets/javascripts/bootstrap.js',
 		'./app/assets/vendor/bower_components/angular/angular.js'
 	])
-    .pipe(sourcemaps.init())
-  	.pipe(uglify())
-	.pipe(concat('lib.js'))
-    .pipe(sourcemaps.write())
+    .pipe(concat('lib.js'))
+	.pipe(gulpif(argv.production, uglify()) )
 	.pipe(gulp.dest(config.destinationJs));
 });
 
@@ -34,9 +34,7 @@ gulp.task('libSass', function() {
 	gulp.src([
 		'./app/assets/styles/lib.sass'
 	])
-	.pipe(sourcemaps.init())
-	.pipe(sass())
-  	.pipe(sourcemaps.write('./maps'))
+	.pipe(gulpif(argv.production,sass({outputStyle: 'compressed'}),sass()))
   	.pipe(gulp.dest(config.destinationCss));
 });
 
@@ -45,20 +43,17 @@ gulp.task('sass', function() {
 		'./app/assets/styles/**/*.sass',
 		'!./app/assets/styles/lib.sass'
 	])
-	.pipe(sourcemaps.init())
-	.pipe(sass())
-  	.pipe(sourcemaps.write('./maps'))
+	.pipe(gulpif(argv.production,sass({outputStyle: 'compressed'}),sass()))
   	.pipe(gulp.dest(config.destinationCss));
 });
 
 gulp.task('coffee', function() {
-  gulp.src('./app/assets/scripts/**/*.coffee')
-    .pipe(coffee({bare: true})
-	.pipe(sourcemaps.write())
-	.on('error', gutil.log))
-    .pipe(gulp.dest(config.destinationJs))
+	gulp.src('./app/assets/scripts/**/*.coffee')
+	.pipe(coffee({bare: true}).on('error', gutil.log))
+	.pipe(gulp.dest(config.destinationJs))
+	.pipe(gulpif(argv.production, uglify()))
+	.pipe(gulp.dest(config.destinationJs))
 });
-
  
 gulp.task('templates', function() {
   var YOUR_LOCALS = {};
@@ -76,7 +71,7 @@ gulp.task('templates', function() {
   // All the rest compiles to js 
   gulp.src('./app/templates/**/*.jade')
   .pipe(jade({client: true}))
-  .pipe(gulp.dest(config.destionationTemplates));
+  .pipe(gulp.dest(config.destinationTemplates));
 });
 
 
@@ -112,4 +107,6 @@ gulp.task('server', function() {
 gulp.task('launch', ['server', 'watch']);
 
 gulp.task('default', ['libJs', 'libSass', 'sass', 'coffee', 'templates']);
+
+
  
