@@ -5,11 +5,13 @@ var coffee = require('gulp-coffee');
 var uglify = require('gulp-uglify');
 var sass = require('gulp-sass');
 var gutil = require('gulp-util');
+var jade = require('gulp-jade');
 
 var config = {
 	"destination": "./build/",
 	"destinationJs": "./build/js/",
-	"destinationCss": "./build/css/"
+	"destinationCss": "./build/css/",
+	"destionationTemplates": "./build/templates/"
 };
 
 gulp.task('libJs', function() {
@@ -55,5 +57,26 @@ gulp.task('coffee', function() {
     .pipe(gulp.dest(config.destinationJs))
 });
 
-gulp.task('default', ['libJs', 'libSass', 'sass', 'coffee']);
+ 
+gulp.task('templates', function() {
+  var YOUR_LOCALS = {};
+ 
+  // Compile index to html
+  gulp.src([
+  		'./app/index.jade'
+  	])
+	.pipe(jade({
+	  locals: YOUR_LOCALS
+	}))
+    .pipe(gulp.dest(config.destination)
+  );
+
+  // All the rest compiles to js 
+  gulp.src('./app/templates/**/*.jade')
+  .pipe(jade({client: true}))
+  .pipe(gulp.dest(config.destionationTemplates));
+});
+
+
+gulp.task('default', ['libJs', 'libSass', 'sass', 'coffee', 'templates']);
  
