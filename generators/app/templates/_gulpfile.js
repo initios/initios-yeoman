@@ -49,17 +49,7 @@ gulp.task('sass', function() {
 });
 
 gulp.task('coffee', function() {
-	gulp.src([
-		'./app/assets/coffee/**/*.coffee'
-	])
-    .pipe(sourcemaps.init())
-	.pipe(concat('lib.js'))
-    .pipe(sourcemaps.write())
-	.pipe(gulp.dest(config.destinationJs));
-});
-
-gulp.task('coffee', function() {
-  gulp.src('./app/assets/coffee/**/*.coffee')
+  gulp.src('./app/assets/scripts/**/*.coffee')
     .pipe(coffee({bare: true})
 	.pipe(sourcemaps.write())
 	.on('error', gutil.log))
