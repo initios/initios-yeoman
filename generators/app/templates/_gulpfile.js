@@ -25,10 +25,18 @@ gulp.task('libJs', function() {
 	.pipe(gulp.dest(config.destinationJs));
 });
 
+gulp.task('libSass', function() {
+	gulp.src([
+		'./app/assets/sass/lib.sass'
+	])
+	.pipe(sourcemaps.init())
+	.pipe(sass())
+  	.pipe(sourcemaps.write('./maps'))
+  	.pipe(gulp.dest(config.destinationCss));
+});
 
 gulp.task('sass', function() {
 	gulp.src([
-		'./app/assets/sass/app.sass',
 		'./app/assets/sass/**/*.sass'
 	])
 	.pipe(sourcemaps.init())
@@ -40,5 +48,5 @@ gulp.task('sass', function() {
 
 gulp.task('production', ['libJs']);
 
-gulp.task('default', ['libJs']);
+gulp.task('default', ['libJs', 'libSass', 'sass']);
  
