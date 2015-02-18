@@ -1,4 +1,5 @@
 var gulp = require('gulp');
+var webserver   = require('gulp-webserver');
 var concat = require('gulp-concat');
 var sourcemaps = require('gulp-sourcemaps');
 var coffee = require('gulp-coffee');
@@ -75,6 +76,17 @@ gulp.task('templates', function() {
   gulp.src('./app/templates/**/*.jade')
   .pipe(jade({client: true}))
   .pipe(gulp.dest(config.destionationTemplates));
+});
+
+
+gulp.task('server', function() {
+	gulp.src('./build/')
+		.pipe(webserver({
+			fallback: 'index.html',
+			livereload: true,
+			open: true,
+			port: 9000
+		}));
 });
 
 
