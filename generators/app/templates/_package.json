@@ -15,7 +15,7 @@
     "gulp-if": "^1.2.5",
     "yargs": "^3.0.4"
   },
-  "devDependencies": { 
+  "devDependencies": {
     "gulp-sourcemaps": "^1.3.0"
   },
   "private": true
