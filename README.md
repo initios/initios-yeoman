@@ -1,6 +1,6 @@
 # Initios Yeoman
 
-This is a yeoman generator for an AngularJS project using Gulp[1], Bower[2] and NPM[3].
+This is a yeoman generator for an AngularJS project using [Gulp][1], [Bower][2] and [NPM][3].
 
 Includes support for Jade, Coffeescript and Less files.
 
@@ -86,11 +86,9 @@ Now you can open your browser on `http://localhost:9000` and see your app workin
 
 
 
-## Support
-
-  [1]: http://gulpjs.com/
-  [2]: http://bower.io/
-  [3]: http://www.npmjs.org/
-  [4]: http://nodejs.org/
+[1]: http://gulpjs.com/
+[2]: http://bower.io/
+[3]: http://www.npmjs.org/
+[4]: http://nodejs.org/
 
 
