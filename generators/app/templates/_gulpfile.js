@@ -75,18 +75,17 @@ gulp.task('templates', function () {
     gulp.src('./app/templates/**/*.jade')
         .pipe(jade({client: true}))
         .pipe(gulp.dest(config.destinationTemplates));
-
-    gulp.task('img', function () {
-        gulp.src('./app/assets/img/**/*')
-            .pipe(imagemin({
-                progressive: true,
-                svgoPlugins: [{removeViewBox: false}],
-                use: [pngquant()]
-            }))
-            .pipe(gulp.dest(config.destinationImg))
-    });
 });
 
+gulp.task('img', function () {
+    gulp.src('./app/assets/img/**/*')
+        .pipe(imagemin({
+            progressive: true,
+            svgoPlugins: [{removeViewBox: false}],
+            use: [pngquant()]
+        }))
+        .pipe(gulp.dest(config.destinationImg))
+});
 
 gulp.task('watch', function() {
 	gulp.watch([
