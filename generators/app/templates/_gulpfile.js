@@ -12,10 +12,11 @@ var gulpif = require('gulp-if');
 var argv = require('yargs').argv;
 
 var config = {
-    "destination": "./build/",
-    "destinationJs": "./build/js/",
-    "destinationCss": "./build/css/",
-    "destinationTemplates": "./build/templates/"
+	"destination": "./build/",
+	"destinationJs": "./build/js/",
+	"destinationCss": "./build/css/",
+	"destinationImg": "./build/img/",
+	"destinationTemplates": "./build/templates/"
 };
 
 gulp.task('libJs', function () {
@@ -72,6 +73,15 @@ gulp.task('templates', function () {
     gulp.src('./app/templates/**/*.jade')
         .pipe(jade({client: true}))
         .pipe(gulp.dest(config.destinationTemplates));
+
+gulp.task('img', function() {
+	gulp.src('./app/img/**/*')
+	.pipe(imagemin({
+		progressive: true,
+		svgoPlugins: [{removeViewBox: false}],
+		use: [pngquant()]
+	}))
+	.pipe(gulp.dest(config.destinationImg))
 });
 
 
