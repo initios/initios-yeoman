@@ -75,7 +75,7 @@ gulp.task('templates', function () {
         .pipe(gulp.dest(config.destinationTemplates));
 
 gulp.task('img', function() {
-	gulp.src('./app/img/**/*')
+	gulp.src('./app/assets/img/**/*')
 	.pipe(imagemin({
 		progressive: true,
 		svgoPlugins: [{removeViewBox: false}],
@@ -85,21 +85,28 @@ gulp.task('img', function() {
 });
 
 
-gulp.task('watch', function () {
-    gulp.watch([
-        './app/assets/styles/**/*.sass',
-        '!./app/assets/styles/lib.sass'
-    ], ['sass']);
-    gulp.watch([
-        './app/assets/styles/lib.sass'
-    ], ['libSass']);
-    gulp.watch([
-        './app/assets/scripts/**/*.coffee'
-    ], ['coffee']);
-    gulp.watch([
-        './app/index.jade',
-        './app/templates/**/*.jade'
-    ], ['templates']);
+gulp.task('watch', function() {
+	gulp.watch([
+		'./app/assets/styles/**/*.sass',
+		'!./app/assets/styles/lib.sass'
+	], ['sass']);
+	
+	gulp.watch([
+		'./app/assets/styles/lib.sass'
+	], ['libSass']);
+	
+	gulp.watch([
+		'./app/assets/scripts/**/*.coffee'
+	], ['coffee']);
+	
+	gulp.watch([
+		'./app/index.jade',
+		'./app/templates/**/*.jade'
+	], ['templates']);
+	
+	gulp.watch([
+		'./app/assets/img/**/*'
+	], ['img'])
 });
 
 
@@ -115,8 +122,5 @@ gulp.task('server', function () {
 
 
 gulp.task('launch', ['server', 'watch']);
-
-gulp.task('default', ['libJs', 'libSass', 'sass', 'coffee', 'templates']);
-
-
+gulp.task('default', ['libJs', 'libSass', 'sass', 'coffee', 'templates', 'img']);
  
