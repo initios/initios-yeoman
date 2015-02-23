@@ -10,6 +10,8 @@ var jade = require('gulp-jade');
 var watch = require('gulp-watch');
 var gulpif = require('gulp-if');
 var argv = require('yargs').argv;
+var imagemin = require('gulp-imagemin');
+var pngquant = require('imagemin-pngquant');
 
 var config = {
 	"destination": "./build/",
