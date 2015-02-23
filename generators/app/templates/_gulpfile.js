@@ -85,7 +85,7 @@ gulp.task('templates', function () {
             }))
             .pipe(gulp.dest(config.destinationImg))
     });
-}
+});
 
 
 gulp.task('watch', function() {
