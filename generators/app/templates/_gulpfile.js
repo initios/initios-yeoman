@@ -29,7 +29,7 @@ gulp.task('libJs', function () {
         './app/assets/vendor/bower_components/angular/angular.js'
     ])
         .pipe(concat('lib.js'))
-        .pipe(gulpif(argv.production, uglify()))
+        .pipe(gulpif(argv.production, uglify().on('error', gutil.log)))
         .pipe(gulp.dest(config.destinationJs));
 });
 
@@ -37,7 +37,7 @@ gulp.task('libSass', function () {
     gulp.src([
         './app/assets/styles/lib.sass'
     ])
-        .pipe(gulpif(argv.production, sass({outputStyle: 'compressed'}), sass()))
+        .pipe(gulpif(argv.production, sass({outputStyle: 'compressed'}), sass()).on('error', gutil.log))
         .pipe(gulp.dest(config.destinationCss));
 });
 
@@ -46,15 +46,18 @@ gulp.task('sass', function () {
         './app/assets/styles/**/*.sass',
         '!./app/assets/styles/lib.sass'
     ])
-        .pipe(gulpif(argv.production, sass({outputStyle: 'compressed'}), sass()))
+        .pipe(gulpif(argv.production, sass({outputStyle: 'compressed'}), sass()).on('error', gutil.log))
         .pipe(gulp.dest(config.destinationCss));
 });
 
 gulp.task('coffee', function () {
-    gulp.src('./app/assets/scripts/**/*.coffee')
+    gulp.src([
+        './app/assets/scripts/*.coffee',
+        './app/assets/scripts/**/*.coffee'
+        ])
         .pipe(coffee({bare: true}).on('error', gutil.log))
-        .pipe(gulp.dest(config.destinationJs))
-        .pipe(gulpif(argv.production, uglify()))
+        .pipe(concat('app.js'))
+        .pipe(gulpif(argv.production, uglify().on('error', gutil.log)))
         .pipe(gulp.dest(config.destinationJs))
 });
 
@@ -66,14 +69,15 @@ gulp.task('templates', function () {
         './app/index.jade'
     ])
         .pipe(jade({
-            locals: YOUR_LOCALS
-        }))
+            locals: YOUR_LOCALS,
+            pretty: true
+        }).on('error', gutil.log))
         .pipe(gulp.dest(config.destination)
     );
 
     // All the rest compiles to js
     gulp.src('./app/templates/**/*.jade')
-        .pipe(jade({client: true}))
+        .pipe(jade({client: true}).on('error', gutil.log))
         .pipe(gulp.dest(config.destinationTemplates));
 });
 
