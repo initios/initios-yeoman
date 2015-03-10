@@ -14,6 +14,7 @@ module.exports = generators.Base.extend({
     writing: function () {
         // App directory structure
         this.directory('app', 'app');
+        this.directory('specs', 'specs');
 
         this.template('_bower.json', 'bower.json');
         this.template('_.bowerrc', '.bowerrc');
@@ -21,6 +22,7 @@ module.exports = generators.Base.extend({
         this.template('_gulpfile.js', 'gulpfile.js');
         this.template('_.gitignore', '.gitignore');
         this.template('_index.jade', './app/index.jade');
+        this.template('_conf.js', 'conf.js');
     },
 
     install: function () {

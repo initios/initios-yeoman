@@ -20,7 +20,9 @@
     "gulp-jsonminify": "^0.0.2"
   },
   "devDependencies": {
-    "gulp-sourcemaps": "^1.3.0"
+    "gulp-sourcemaps": "^1.3.0",
+    "phantomjs": "^1.9.16",
+    "protractor": "^1.8.0"
   },
   "private": true
 }
