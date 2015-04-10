@@ -1,37 +1,36 @@
 var generators = require('yeoman-generator');
 var inquirer = require("inquirer");
+var chalk = require('chalk');
+var yosay = require('yosay');
 
 module.exports = generators.Base.extend({
 
-	initializing: function() {
-		this.store = {
-			"bower-dependencies": []
-		}
-	},
+    initializing: function () {
+        this.store = {
+            "bower-dependencies": []
+        }
+    },
 
-	prompting: function() {
-	    var done = this.async();
+    writing: function () {
+        // App directory structure
+        this.directory('app', 'app');
+        this.directory('specs', 'specs');
 
-	    this.prompt({
-			type: 'checkbox',
-			name: 'name',
-			message: "Select bower packages to install",
-			store: true,
-			choices: [
-				 "bootstrap", "foundation", "jquery", "angular"
-			]
-	    }, function(answers) {
-    		this.store["bower-dependencies"] = answers.name;
-    		console.log(this.store);
-	      	done();
-	    }.bind(this));
-  	},
+        this.template('_bower.json', 'bower.json');
+        this.template('_.bowerrc', '.bowerrc');
+        this.template('_package.json', 'package.json');
+        this.template('_gulpfile.js', 'gulpfile.js');
+        this.template('_.gitignore', '.gitignore');
+        this.template('_index.jade', './app/index.jade');
+        this.template('_conf.js', 'conf.js');
+    },
 
-  	writing: function() {
-  		this.template('bower.json', 'bower.json');
-  	},
+    install: function () {
+        this.installDependencies();
+    },
 
-  	install: function() {
-    	this.spawnCommand('bower', ['install']);
-  	}
+    end: function () {
+        this.log(yosay('Almost done! ' + chalk.green('running default gulp task')));
+        this.spawnCommand('node_modules/gulp/bin/gulp.js');
+    }
 });

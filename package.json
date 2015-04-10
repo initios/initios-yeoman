@@ -6,11 +6,13 @@
     "yeoman-generator"
   ],
   "dependencies": {
-    "yeoman-generator": "^0.17.7"
+    "chalk": "^0.5.1",
+    "yeoman-generator": "^0.17.7",
+    "yosay": "^1.0.2"
   },
   "repository": {
-  	"type": "git",
-  	"url": "https://github.com/initios/initios-yeoman"
+    "type": "git",
+    "url": "https://github.com/initios/initios-yeoman"
   },
   "license": "BSD-3-Clause"
 }
