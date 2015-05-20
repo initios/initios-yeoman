@@ -1,5 +1,4 @@
 var generators = require('yeoman-generator');
-var inquirer = require("inquirer");
 var chalk = require('chalk');
 var yosay = require('yosay');
 
